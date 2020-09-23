@@ -1,0 +1,35 @@
+int sensor = A0;
+int sensorValue = 0;
+int Q1=13,Q2=12,Q3=11,Q4=10;
+void setup() 
+{
+  pinMode(Q1,OUTPUT);
+  pinMode(Q2,OUTPUT);
+  pinMode(Q3,OUTPUT);
+  pinMode(Q4,OUTPUT);
+  Serial.begin(9600);
+}
+void loop() 
+{
+  digitalWrite(6,HIGH);   
+  digitalWrite(7,HIGH);
+  sensorValue = -1*analogRead(sensor);
+  Serial.print("LPG Content:");
+  Serial.print(sensorValue);
+  Serial.println("PPM");
+  if(sensorValue>=200)
+  {
+    digitalWrite(Q1,HIGH);
+    digitalWrite(Q2,LOW);
+    digitalWrite(Q3,HIGH);
+    digitalWrite(Q4,LOW);
+    delay(5000);
+  }
+  else
+  {
+    digitalWrite(Q1,LOW);
+    digitalWrite(Q2,LOW);
+    digitalWrite(Q3,LOW);
+    digitalWrite(Q4,LOW);
+  }
+}
